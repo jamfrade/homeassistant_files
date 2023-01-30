@@ -10,57 +10,57 @@ blueprint:
         entity:
           integration: mqtt
           domain: sensor
-    left_button_short_press:
+    single_left:
       name: Single Press - Left Button
-      description: Action to run on \"single_left\"
+      description: Action to run on "single_left"
       default: []
       selector:
         action: {}
-    left_button_double_press:
+    double_left:
       name: Double Press - Left Button
-      description: Action to run on double_left
+      description: Action to run on "double_left"
       default: []
       selector:
         action: {}
-    left_button_long_press:
+    hold_left:
       name: Long Press - Left Button
-      description: Action to run on hold_left
+      description: Action to run on "hold_left"
       default: []
       selector:
         action: {}
-    right_button_short_press:
+    single_right:
       name: Single Press - Right Button
-      description: Action to run on single_right
+      description: Action to run on "single_right"
       default: []
       selector:
         action: {}
-    right_button_double_press:
+    double_right:
       name: Double Press - Right Button
-      description: Action to run on double_right
+      description: Action to run on "double_right"
       default: []
       selector:
         action: {}
-    right_button_long_press:
+    hold_right:
       name: Long Press - Right Button
-      description: Action to run on hold_right
+      description: Action to run on "hold_right"
       default: []
       selector:
         action: {}
-    both_buttons_short_press:
+    single_both:
       name: Single Press - Both Buttons
-      description: Action to run on single_both
+      description: Action to run on "single_both"
       default: []
       selector:
         action: {}
-    both_buttons_double_press:
+    double_both:
       name: Double Press - Both Buttons
-      description: Action to run on double_both
+      description: Action to run on "double_both"
       default: []
       selector:
         action: {}
-    both_buttons_long_press:
+    hold_both:
       name: Long Press - Both Buttons
-      description: Action to run on hold_both
+      description: Action to run on "hold_both"
       default: []
       selector:
         action: {}
@@ -76,28 +76,28 @@ action:
   - choose:
       - conditions:
           - "{{ command == 'single_left' }}"
-        sequence: !input "left_button_short_press"
+        sequence: !input "single_left"
       - conditions:
           - "{{ command == 'single_right' }}"
-        sequence: !input "right_button_short_press"
+        sequence: !input "single_right"
       - conditions:
           - "{{ command == 'single_both' }}"
-        sequence: !input "both_buttons_short_press"
+        sequence: !input "single_both"
       - conditions:
           - "{{ command == 'double_left' }}"
-        sequence: !input "left_button_double_press"
+        sequence: !input "double_left"
       - conditions:
           - "{{ command == 'double_right' }}"
-        sequence: !input "right_button_double_press"
+        sequence: !input "double_right"
       - conditions:
           - "{{ command == 'double_both' }}"
-        sequence: !input "both_buttons_double_press"
+        sequence: !input "double_both"
       - conditions:
           - "{{ command == 'hold_left' }}"
-        sequence: !input "left_button_long_press"
+        sequence: !input "hold_left"
       - conditions:
           - "{{ command == 'hold_right' }}"
-        sequence: !input "right_button_long_press"
+        sequence: !input "hold_right"
       - conditions:
           - "{{ command == 'hold_both' }}"
-        sequence: !input "both_buttons_long_press"
+        sequence: !input "hold_both"
