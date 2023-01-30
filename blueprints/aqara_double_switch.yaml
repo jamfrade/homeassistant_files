@@ -10,39 +10,57 @@ blueprint:
         entity:
           integration: mqtt
           domain: sensor
-    button_one_short_press:
-      name: Single Press - Button 1
-      description: Action to run on button 1 - single press
+    left_button_short_press:
+      name: Single Press - Left Button
+      description: Action to run on \"single_left\"
       default: []
       selector:
         action: {}
-    button_one_double_press:
-      name: Double Press - Button 1
-      description: Action to run on button 1 - double press
+    left_button_double_press:
+      name: Double Press - Left Button
+      description: Action to run on double_left
       default: []
       selector:
         action: {}
-    button_one_long_press:
-      name: Long Press - Button 1
-      description: Action to run on button 1 - long press
+    left_button_long_press:
+      name: Long Press - Left Button
+      description: Action to run on hold_left
       default: []
       selector:
         action: {}
-    button_two_short_press:
-      name: Single Press - Button 2
-      description: Action to run on button 2 - single press
+    right_button_short_press:
+      name: Single Press - Right Button
+      description: Action to run on single_right
       default: []
       selector:
         action: {}
-    button_two_double_press:
-      name: Double Press - Button 2
-      description: Action to run on button 2 - double press
+    right_button_double_press:
+      name: Double Press - Right Button
+      description: Action to run on double_right
       default: []
       selector:
         action: {}
-    button_two_long_press:
-      name: Long Press - Button 2
-      description: Action to run on button 2 - long press
+    right_button_long_press:
+      name: Long Press - Right Button
+      description: Action to run on hold_right
+      default: []
+      selector:
+        action: {}
+    both_buttons_short_press:
+      name: Single Press - Both Buttons
+      description: Action to run on single_both
+      default: []
+      selector:
+        action: {}
+    both_buttons_double_press:
+      name: Double Press - Both Buttons
+      description: Action to run on double_both
+      default: []
+      selector:
+        action: {}
+    both_buttons_long_press:
+      name: Long Press - Both Buttons
+      description: Action to run on hold_both
       default: []
       selector:
         action: {}
@@ -57,20 +75,29 @@ action:
       command: "{{ trigger.to_state.state }}"
   - choose:
       - conditions:
-          - "{{ command == '1_single' }}"
-        sequence: !input "button_one_short_press"
+          - "{{ command == 'single_left' }}"
+        sequence: !input "left_button_short_press"
       - conditions:
-          - "{{ command == '2_single' }}"
-        sequence: !input "button_two_short_press"
+          - "{{ command == 'single_right' }}"
+        sequence: !input "right_button_short_press"
       - conditions:
-          - "{{ command == '1_double' }}"
-        sequence: !input "button_one_double_press"
+          - "{{ command == 'single_both' }}"
+        sequence: !input "both_buttons_short_press"
       - conditions:
-          - "{{ command == '2_double' }}"
-        sequence: !input "button_two_double_press"
+          - "{{ command == 'double_left' }}"
+        sequence: !input "left_button_double_press"
       - conditions:
-          - "{{ command == '1_hold' }}"
-        sequence: !input "button_one_long_press"
+          - "{{ command == 'double_right' }}"
+        sequence: !input "right_button_double_press"
       - conditions:
-          - "{{ command == '2_hold' }}"
-        sequence: !input "button_two_long_press"
+          - "{{ command == 'double_both' }}"
+        sequence: !input "both_buttons_double_press"
+      - conditions:
+          - "{{ command == 'hold_left' }}"
+        sequence: !input "left_button_long_press"
+      - conditions:
+          - "{{ command == 'hold_right' }}"
+        sequence: !input "right_button_long_press"
+      - conditions:
+          - "{{ command == 'hold_both' }}"
+        sequence: !input "both_buttons_long_press"
