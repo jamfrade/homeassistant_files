@@ -1,0 +1,39 @@
+blueprint:
+  name: Binary Sensor
+  description: Automate binary sensor (contact/water/motion/etc)
+  domain: automation
+  input:
+    entity:
+      name: Binary Sensor
+      description: Binary sensor entity to automate (contact/water/motion/etc)
+      selector:
+        entity:
+          domain: binary_sensor
+    on_state:
+      name: 'On'
+      description: Action to run when sensor state is "On"
+      default: []
+      selector:
+        action: {}
+    off_state:
+      name: 'Off'
+      description: Action to run when sensor state is "Off"
+      default: []
+      selector:
+        action: {}
+  source_url: https://raw.githubusercontent.com/jamfrade/homeassistant_files/main/blueprints/binary_sensor.yaml
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input entity
+action:
+- variables:
+    command: '{{ trigger.to_state.state }}'
+- choose:
+  - conditions:
+    - '{{ command == ''on'' }}'
+    sequence: !input on_state
+  - conditions:
+    - '{{ command == ''off'' }}'
+    sequence: !input off_state
