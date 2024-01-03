@@ -1,6 +1,6 @@
 blueprint:
-  name: Alarmo Keypad Sync - JD Rev
-  description: Keypad sync with Alarmo - JD Rev
+  name: Alarmo Keypad Sync
+  description: Keypad sync with Alarmo
   domain: automation
   input:
     state_topic:
